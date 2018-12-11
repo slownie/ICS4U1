@@ -15,9 +15,11 @@ public class LoadingIcon
 	
 	//Timer Variables:
 	final static int T1SPEED = 5000; //Speed of Timer
-	final static int T1DELAY = 200; //Initial Delay
+	final static int T1DELAY = 300; //Initial Delay
 	
 	final static int T2SPEED = 10;
+	
+	final static int FRAMERATE = 60;
 	
 	public static void main (String [] args) 
 	{
@@ -56,40 +58,9 @@ public class LoadingIcon
 	
 	private void moveSquares()
 	{
-		boolean isLeft = false;
-		boolean isRight = false;
-		boolean isUp = false;
-		boolean isDown = false;
-		
 		for (Square s : squares)
 		{
-			//Squares initially go Left:
-			isLeft = true;
-			if (isLeft)
-			{
-				s.xCord += s.speed;
-
-				if (s.xCord == 50)
-				{
-					isLeft = false;
-					isDown = true;
-				}
-			}
-			
-			if (isRight)
-			{
-				s.xCord -= s.speed;
-			}
-			
-			if (isUp)
-			{
-				s.yCord -= s.speed;
-			}
-			
-			if (isDown)
-			{
-				s.yCord += s.speed;
-			}
+			s.move();
 		}
 	}
 	
@@ -118,7 +89,7 @@ public class LoadingIcon
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			squares.add(new Square(0, 0));
+			squares.add(new Square(0, 0, 50, 0));
 			drPanel.repaint();
 		}
 	}
